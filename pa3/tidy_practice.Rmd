@@ -1,0 +1,46 @@
+---
+title: "extra"
+author: "Kendra Dickinson"
+date: "2023-02-26"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+---
+title: "tidy_practice"
+author: "Kendra Dickinson"
+date: "2023-02-20"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, load required packages}
+library(languageR)
+library(tidyverse)
+library(lme4)
+```
+
+```{r, select data set}
+data(package = "languageR")
+summary(affixProductivity)
+```
+
+```{r, tidy data}
+affix_long<-affixProductivity%>%
+  pivot_longer(
+    cols =c("semi", "anti", "ee", "ism", "ian", "ful", "y", "ness", "able", "ly", "unV", "unA", "ize", "less", "erA", "erC", "ity", "super", "est", "ment", "ify", "re", "ation", "in.", "ex", "en", "be"),
+    names_to = "affix", 
+    values_to="productivity")
+
+affix_long$affix<-factor(affix_long$affix)
+summary(affix_long)
+```
+
+## Notes
+I initially chose this data set, affixProductivity, for this assignment. I chose it specifically because the organization of the data was a great opportunity to practice tidying. However, when it came to doing inferential statistics on the data set, I quickly realized that a more complex model than a bivariate model of continuous variables would be required to accurately look at this data set. This is because the only continuous variables in the data set were affix productivity and author's birth year. However, only analyzing these two variables would leave aside the identities of the affixes themselves, a categorical variable, which I believe is necessarily to include in order to analyze the data in a meaningful way. I considered choosing one of the affixes and running a regression on only that affix, but was concerned about reliability because that would include only 44 observations. There could be a way to conduct this kind of analysis including only categorical variables, but I couldn't figure out how to do that within the parameters of the current assignment, so I simply used this as a practice in data tidying. 
+
+
+
+

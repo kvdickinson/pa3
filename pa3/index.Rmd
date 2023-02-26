@@ -1,0 +1,70 @@
+---
+title: "index"
+author: "Kendra Dickinson"
+date: "2023-02-20"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+## Load Packages and Select Dataframe
+```{r, load required packages}
+library(languageR)
+library(tidyverse)
+library(lme4)
+```
+
+```{r, select data set}
+data(package = "languageR")
+summary(beginningReaders)
+```
+
+## Descriptive Statistics
+```{r, descriptive statistics1}
+beginningReaders%>%
+  group_by(Word)%>%
+  summarize(mean_RT = mean(LogRT))%>%
+  arrange(desc(mean_RT))%>%
+  print(n=184)
+```
+
+
+## Correlation
+```{r, correlation}
+print(error_freq<-cor(beginningReaders$LogFrequency, beginningReaders$ProportionOfError))
+
+```
+
+```{r, correlation test}
+cor.test(beginningReaders$LogFrequency, beginningReaders$ProportionOfErrors)
+```
+
+## Bivariate Analysis
+```{r, bivariate regression}
+summary(model1<- lm(LogRT ~ LogFrequency, data = beginningReaders))
+```
+
+```{r, extract coeffecients}
+r_sq<-summary(model1)$r.squared
+est<-summary(model1)$coefficients["LogFrequency", "Estimate"]
+p<-summary(model1)$coefficients["LogFrequency", "Pr(>|t|)"]
+```
+
+```{r, plot with regression line}
+beginningReaders%>%
+  ggplot()+
+  aes(LogFrequency, ProportionOfErrors)+
+  geom_point()+
+  geom_smooth(method='lm')
+```
+
+
+## Observations
+These data include lexical decision accuracy measures and response times among a group of 8-year-old Dutch children. The data also include other measures related to the included lexical items such as frequency, word length, and morphological family size, as well as the children's reading scores. In analyzing these data, my aim was to assess the relationship, or lack thereof, between the children's accuracy in the lexical decision task and word frequency. I hypothesized that there would be a negative relationship between this factors, whereby children would exhibit lower portions of errors in accuracy with higher frequency words.
+
+
+Initial analysis of the data do in fact show that there is a negative relationship between these factors, with a correlation of `r error_freq`. Additionally, preliminary inferential analysis suggests that it is possible to reject the null hypothesis that there is no relationship between these children's proportion of errors and word frequency.  The output of a bivariate linear regression model with proportion of errors as the dependent variable and log word frequency as a predictor variable shows a negative estimate of `r est` for the latter, with p-value of `r p`. However, the model has an r-squared value of `r r_sq`, indicating that it is worth exploring other potentially explanatory variables in order to create a more robust model that more throughly accounts for the children's proportion of errors.
+
+
+
+
+
