@@ -412,200 +412,49 @@ summary(beginningReaders)</code></pre>
 ##  Max.   : 2.926385  
 ## </code></pre>
 </div>
+<div id="tidy" class="section level2">
+<h2>Tidy</h2>
+<p>This data set did not require tidying. I practiced tidying using the
+affixProductivity data set in a separate file.</p>
+</div>
 <div id="descriptive-statistics" class="section level2">
 <h2>Descriptive Statistics</h2>
 <pre class="r"><code>beginningReaders%&gt;%
   group_by(Word)%&gt;%
   summarize(mean_RT = mean(LogRT))%&gt;%
-  arrange(desc(mean_RT))%&gt;%
-  print(n=184)</code></pre>
+  arrange(desc(mean_RT))</code></pre>
 <pre><code>## # A tibble: 184 × 2
-##     Word        mean_RT
-##     &lt;fct&gt;         &lt;dbl&gt;
-##   1 schitteren     7.63
-##   2 temperatuur    7.59
-##   3 stoken         7.57
-##   4 strekken       7.57
-##   5 spleet         7.56
-##   6 karwei         7.56
-##   7 bonzen         7.56
-##   8 schamen        7.56
-##   9 parfum         7.54
-##  10 knipperen      7.53
-##  11 glinsteren     7.52
-##  12 dwingen        7.51
-##  13 kerel          7.49
-##  14 schrapen       7.49
-##  15 staren         7.49
-##  16 struikelen     7.49
-##  17 kneden         7.48
-##  18 knielen        7.48
-##  19 stuiven        7.47
-##  20 verrassen      7.47
-##  21 barsten        7.47
-##  22 weven          7.46
-##  23 paradijs       7.46
-##  24 slikken        7.46
-##  25 schoot         7.46
-##  26 krijsen        7.46
-##  27 stinken        7.46
-##  28 ketel          7.46
-##  29 worstelen      7.45
-##  30 snauwen        7.45
-##  31 proberen       7.45
-##  32 snikken        7.45
-##  33 flitsen        7.44
-##  34 bukken         7.44
-##  35 karton         7.44
-##  36 lijden         7.43
-##  37 rinkelen       7.43
-##  38 gapen          7.43
-##  39 matras         7.43
-##  40 spul           7.43
-##  41 knagen         7.42
-##  42 blinken        7.42
-##  43 sissen         7.42
-##  44 bieden         7.41
-##  45 horloge        7.41
-##  46 metselen       7.41
-##  47 klagen         7.41
-##  48 plafond        7.41
-##  49 insekt         7.41
-##  50 smijten        7.40
-##  51 horizon        7.40
-##  52 snuiven        7.40
-##  53 grommen        7.40
-##  54 baden          7.40
-##  55 stampen        7.40
-##  56 gluren         7.40
-##  57 stoep          7.40
-##  58 plezier        7.39
-##  59 grijns         7.39
-##  60 turen          7.39
-##  61 krimpen        7.39
-##  62 echo           7.39
-##  63 mompelen       7.38
-##  64 vijver         7.38
-##  65 ladder         7.38
-##  66 beton          7.38
-##  67 koren          7.38
-##  68 wapperen       7.38
-##  69 mengen         7.38
-##  70 vacht          7.37
-##  71 balkon         7.37
-##  72 schelden       7.37
-##  73 blaffen        7.36
-##  74 deken          7.36
-##  75 zwijgen        7.36
-##  76 kanon          7.36
-##  77 schande        7.36
-##  78 graan          7.36
-##  79 brok           7.35
-##  80 broer          7.35
-##  81 boodschap      7.35
-##  82 hijgen         7.35
-##  83 hijsen         7.35
-##  84 oever          7.35
-##  85 woud           7.35
-##  86 garage         7.34
-##  87 plukken        7.34
-##  88 grijnzen       7.34
-##  89 bocht          7.34
-##  90 gieten         7.34
-##  91 rijst          7.34
-##  92 groeten        7.33
-##  93 rest           7.33
-##  94 durven         7.33
-##  95 matroos        7.33
-##  96 spijten        7.32
-##  97 villa          7.32
-##  98 klant          7.31
-##  99 knol           7.31
-## 100 leunen         7.31
-## 101 korst          7.31
-## 102 ober           7.31
-## 103 juichen        7.31
-## 104 lawaai         7.31
-## 105 gillen         7.31
-## 106 liegen         7.31
-## 107 fluisteren     7.30
-## 108 kraag          7.30
-## 109 teen           7.30
-## 110 wang           7.30
-## 111 brullen        7.30
-## 112 rillen         7.30
-## 113 zwaard         7.30
-## 114 kin            7.30
-## 115 raket          7.30
-## 116 poos           7.29
-## 117 liter          7.29
-## 118 zuigen         7.29
-## 119 loeren         7.29
-## 120 stier          7.28
-## 121 grap           7.28
-## 122 wiegen         7.28
-## 123 piloot         7.28
-## 124 zweven         7.28
-## 125 giechelen      7.27
-## 126 vuist          7.27
-## 127 grot           7.26
-## 128 grinniken      7.26
-## 129 smeken         7.26
-## 130 band           7.26
-## 131 koffer         7.26
-## 132 douche         7.26
-## 133 piepen         7.26
-## 134 beek           7.26
-## 135 neef           7.25
-## 136 avontuur       7.25
-## 137 gloeien        7.25
-## 138 tante          7.25
-## 139 laden          7.25
-## 140 beven          7.25
-## 141 bord           7.25
-## 142 zeuren         7.25
-## 143 trots          7.24
-## 144 worm           7.24
-## 145 sprookje       7.24
-## 146 mouw           7.23
-## 147 manier         7.23
-## 148 kudde          7.22
-## 149 vork           7.22
-## 150 rekenen        7.22
-## 151 muts           7.21
-## 152 broek          7.21
-## 153 sloot          7.21
-## 154 ui             7.21
-## 155 kreunen        7.20
-## 156 beker          7.20
-## 157 plek           7.20
-## 158 trui           7.20
-## 159 jagen          7.20
-## 160 ruzie          7.19
-## 161 ruiken         7.19
-## 162 rij            7.19
-## 163 minuut         7.19
-## 164 plein          7.18
-## 165 pijl           7.18
-## 166 mus            7.17
-## 167 melden         7.17
-## 168 taart          7.17
-## 169 cent           7.16
-## 170 koning         7.16
-## 171 verdriet       7.16
-## 172 fruit          7.15
-## 173 zwemmen        7.15
-## 174 snor           7.15
-## 175 kilo           7.14
-## 176 kus            7.13
-## 177 park           7.12
-## 178 vaas           7.09
-## 179 sok            7.08
-## 180 emmer          7.08
-## 181 buit           7.07
-## 182 oom            7.05
-## 183 pet            7.01
-## 184 poes           6.95</code></pre>
+##    Word        mean_RT
+##    &lt;fct&gt;         &lt;dbl&gt;
+##  1 schitteren     7.63
+##  2 temperatuur    7.59
+##  3 stoken         7.57
+##  4 strekken       7.57
+##  5 spleet         7.56
+##  6 karwei         7.56
+##  7 bonzen         7.56
+##  8 schamen        7.56
+##  9 parfum         7.54
+## 10 knipperen      7.53
+## # … with 174 more rows</code></pre>
+<pre class="r"><code>beginningReaders%&gt;%
+  group_by(Word)%&gt;%
+  summarize(freq = mean(LogFrequency))%&gt;%
+  arrange(desc(freq))</code></pre>
+<pre><code>## # A tibble: 184 × 2
+##    Word      freq
+##    &lt;fct&gt;    &lt;dbl&gt;
+##  1 proberen  7.03
+##  2 poes      6.33
+##  3 tante     6.29
+##  4 bord      6.22
+##  5 zwemmen   6.14
+##  6 oom       6.13
+##  7 manier    6.08
+##  8 koning    6.05
+##  9 rij       6.03
+## 10 plek      6.02
+## # … with 174 more rows</code></pre>
 </div>
 <div id="correlation" class="section level2">
 <h2>Correlation</h2>

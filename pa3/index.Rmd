@@ -18,13 +18,22 @@ data(package = "languageR")
 summary(beginningReaders)
 ```
 
+## Tidy
+This data set did not require tidying. I practiced tidying using the affixProductivity data set in a separate file.
+
+
 ## Descriptive Statistics
 ```{r, descriptive statistics1}
 beginningReaders%>%
   group_by(Word)%>%
   summarize(mean_RT = mean(LogRT))%>%
-  arrange(desc(mean_RT))%>%
-  print(n=184)
+  arrange(desc(mean_RT))
+
+beginningReaders%>%
+  group_by(Word)%>%
+  summarize(freq = mean(LogFrequency))%>%
+  arrange(desc(freq))
+
 ```
 
 
